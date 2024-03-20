@@ -18,20 +18,20 @@ export function setupCactus() {
 
 export function updateCactus(delta, speedScale) {
   document.querySelectorAll("[data-cactus]").forEach(cactus => {
-    incrementCustomProperty(cactus, "--left",
-    delta * speedScale * SPEED * -1)
-
-    if (getCustomProperty(cactus, "--left") <= 100) {
+    incrementCustomProperty(cactus, "--left", delta * speedScale * SPEED * -1)
+    if (getCustomProperty(cactus, "--left") <= -100) {
       cactus.remove()
     }
   })
 
   if (nextCactusTime <= 0) {
-    createCactus();
-    nextCactusTime = randomNumberBetween(CACTUS_INTERVAL_MIN, CACTUS_INTERVAL_MAX) / speedScale}
-  nextCactusTime -= delta;
-
+    createCactus()
+    nextCactusTime =
+      randomNumberBetween(CACTUS_INTERVAL_MIN, CACTUS_INTERVAL_MAX) / speedScale
+  }
+  nextCactusTime -= delta
 }
+
 
 function createCactus() {
   const cactus = document.createElement("img")
@@ -43,6 +43,5 @@ function createCactus() {
 }
 
 function randomNumberBetween(min, max) {
- return Math.floor(Math.random() * (max - min + 1 ) + min)
-
+  return Math.floor(Math.random() * (max - min + 1) + min)
 }
